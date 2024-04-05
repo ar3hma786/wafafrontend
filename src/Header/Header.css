@@ -1,0 +1,69 @@
+.user-btn {
+    transition: all 0.3s;
+}
+
+.user-btn:hover {
+    background-color: #ffc846;
+    border-color: black;
+    color: black;
+}
+
+.admin-btn {
+    background-color: #ffc846;
+}
+
+.navcolor {
+    background-color: #ffc846;
+}
+
+.logo {
+    font-family: "Inknut Antiqua", serif;
+    font-weight: 400;
+    font-style: oblique;
+    font-size: x-large;
+}
+
+
+.logoimage {
+    height: 55px;
+    width: 55px;
+}
+
+
+@media (max-width: 767px) {
+    .user {
+        margin-bottom: 10px;
+    }
+
+    @media (max-width: 767px) {
+        .navbar {
+            padding: 5px 10px;
+        }
+
+        .navbar-brand {
+            font-size: 20px;
+        }
+
+        .navbar-toggler-icon {
+            font-size: 0.8rem;
+        }
+
+        .logoimage {
+            height: 50px;
+            width: auto;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 14px;
+        }
+
+        .user-btn,
+        .admin-btn {
+            font-size: 14px;
+            padding: 5px 10px;
+        }
+    }
+
+
+
+}

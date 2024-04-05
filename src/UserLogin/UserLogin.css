@@ -1,0 +1,86 @@
+.wafas {
+    font-size: 75px;
+}
+
+.newwafa {
+    font-size: 35px;
+}
+
+.wafanew {
+    font-size: 18px;
+}
+
+.wafacontainer {
+    background-color: #ffc846;
+    padding: 0px 25px;
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.userlogin {
+    color: #343a40;
+    font-size: 45px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.card-body {
+    padding: 30px;
+}
+
+.form-control {
+    border-color: #ced4da;
+    height: 30px;
+    font-size: 18px;
+}
+
+.user-login-card {
+    width: 400px;
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.user-login-card .form-label {
+    color: #343a40;
+}
+
+.user-login-card .btn-dark {
+    background-color: #343a40;
+    border-color: #343a40;
+    color: #ffffff;
+    padding: 15px 30px;
+    font-size: 20px;
+}
+
+.user-login-card .btn-dark:hover {
+    background-color: #23272b;
+    border-color: #23272b;
+}
+
+
+@media (max-width: 767px) {
+
+
+    .user-login-card {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img {
+        height: auto;
+        width: 90%;
+    }
+}
