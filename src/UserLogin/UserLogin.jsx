@@ -21,7 +21,7 @@ function UserLogin() {
     }
 
     async function handleSubmit() {
-        if (await authContext.login(cardNumber, password)) { // Wait for login to complete
+        if (await authContext.login(cardNumber, password)) {
             navigate(`/welcome/${cardNumber}`);
         } else {
             setErrorMessage(true);

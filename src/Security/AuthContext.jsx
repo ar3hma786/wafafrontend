@@ -31,10 +31,10 @@ export default function AuthProvider({ children }) {
                     }
                 );
 
-                if (firstLogin) { // Redirect to userwelcome page on first successful login
+                if (firstLogin) {
                     setFirstLogin(false);
-                    return true;
                 }
+                return true;
             } else {
                 console.error('Login failed:', response.statusText);
                 return false;
