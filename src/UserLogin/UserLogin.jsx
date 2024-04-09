@@ -9,7 +9,7 @@ function UserLogin() {
     const [errorMessage, setErrorMessage] = useState(false);
     const navigate = useNavigate();
 
-    const authContext = useAuth()
+    const authContext = useAuth();
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -20,9 +20,9 @@ function UserLogin() {
         }
     }
 
-    function handleSubmit() {
-        if (authContext.login(cardNumber, password)) {
-            navigate(`/welcome/${cardNumber}`)
+    async function handleSubmit() {
+        if (await authContext.login(cardNumber, password)) { // Wait for login to complete
+            navigate(`/welcome/${cardNumber}`);
         } else {
             setErrorMessage(true);
         }

@@ -6,8 +6,3 @@ export const apiClient = axios.create({
         'Content-Type': 'application/json'
     }
 });
-
-apiClient.interceptors.request.use(config => {
-    config.headers['Access-Control-Allow-Origin'] = '*';
-    return config;
-});

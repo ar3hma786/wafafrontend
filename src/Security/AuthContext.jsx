@@ -10,6 +10,7 @@ export default function AuthProvider({ children }) {
     const [isAuthenticated, setAuthenticated] = useState(false);
     const [cardNumber, setCardNumber] = useState('');
     const [token, setToken] = useState('');
+    const [firstLogin, setFirstLogin] = useState(true); // Track first login
 
     async function login(cardNumber, password) {
         try {
@@ -30,7 +31,10 @@ export default function AuthProvider({ children }) {
                     }
                 );
 
-                return true;
+                if (firstLogin) { // Redirect to userwelcome page on first successful login
+                    setFirstLogin(false);
+                    return true;
+                }
             } else {
                 console.error('Login failed:', response.statusText);
                 return false;
@@ -45,8 +49,6 @@ export default function AuthProvider({ children }) {
         setAuthenticated(false);
         setCardNumber('');
         setToken('');
-        apiClient.interceptors.request.eject(apiClient.interceptors.request);
-        apiClient.interceptors.response.eject(apiClient.interceptors.response);
     }
 
     return (
