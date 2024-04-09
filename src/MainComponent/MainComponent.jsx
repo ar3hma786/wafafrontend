@@ -9,6 +9,8 @@ import PaymentNotCompleted from '../UserLogin/PaymentNotCompleted';
 import UserLogout from '../UserLogin/UserLogout';
 import ErrorComponent from '../ErrorComponent/ErrorComponent';
 import AuthProvider, { useAuth } from '../Security/AuthContext';
+import AgentLogin from '../AgentLogin/AgentLogin';
+import AgentWelcome from '../AgentLogin/AgentWelcome';
 
 function AuthenticatedRoute({ children }) {
     const authContext = useAuth()
@@ -26,6 +28,12 @@ function MainComponent() {
                 <BrowserRouter>
                     <Header />
                     <Routes>
+                        <Route path='/admin' element={<AgentLogin />} />
+                        <Route path="/adminwelcome/:username" element={
+                            <AuthenticatedRoute>
+                                <AgentWelcome />
+                            </AuthenticatedRoute>
+                        } />
                         <Route path='/' element={<UserLogin />} />
                         <Route path='/login' element={<UserLogin />} />
                         <Route path='/welcome/:cardNumber' element={

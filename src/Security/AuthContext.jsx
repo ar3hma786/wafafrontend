@@ -51,8 +51,22 @@ export default function AuthProvider({ children }) {
         setToken('');
     }
 
+    function adminlogin(username, password) {
+        if (username === 'khader' && password === 'dummy') {
+            setAuthenticated(true)
+            return true
+        } else {
+            setAuthenticated(false)
+            return false
+        }
+    }
+
+    function adminlogout() {
+        setAuthenticated(false)
+    }
+
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout, cardNumber, token }}>
+        <AuthContext.Provider value={{ isAuthenticated, login, logout, cardNumber, token, adminlogin, adminlogout }}>
             {children}
         </AuthContext.Provider>
     );
