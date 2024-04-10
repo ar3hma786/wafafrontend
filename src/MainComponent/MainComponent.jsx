@@ -11,6 +11,7 @@ import ErrorComponent from '../ErrorComponent/ErrorComponent';
 import AuthProvider, { useAuth } from '../Security/AuthContext';
 import AgentLogin from '../AgentLogin/AgentLogin';
 import AgentWelcome from '../AgentLogin/AgentWelcome';
+import CreateUser from '../AgentLogin/CreateUser';
 
 function AuthenticatedRoute({ children }) {
     const authContext = useAuth()
@@ -29,9 +30,14 @@ function MainComponent() {
                     <Header />
                     <Routes>
                         <Route path='/admin' element={<AgentLogin />} />
-                        <Route path="/adminwelcome/:username" element={
+                        <Route path='/adminwelcome/:username' element={
                             <AuthenticatedRoute>
                                 <AgentWelcome />
+                            </AuthenticatedRoute>
+                        } />
+                        <Route path='/welcome/createuser' element={
+                            <AuthenticatedRoute>
+                                <CreateUser />
                             </AuthenticatedRoute>
                         } />
                         <Route path='/' element={<UserLogin />} />

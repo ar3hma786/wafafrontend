@@ -10,3 +10,5 @@ export const executeJWTAuthentication = (cardNumber, password) => {
         return error.response;
     }
 };
+
+export const agentWelcome = () => apiClient.get('/api/userslist');

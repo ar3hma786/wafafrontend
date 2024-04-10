@@ -1,37 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom'
 import './AgentWelcome.css';
+import { agentWelcome } from '../API/RestAPIService';
 
 function AgentWelcome() {
+    const [users, setUsers] = useState([]);
 
-    const [values, setValues] = useState([
-        {
-            cardNumber: '9590',
-            name: 'Bilal Hussain',
-            city: 'Mangalore',
-            phoneNo: '8618609838',
-            careOff1: 'NA',
-            careOff2: 'AZ',
-            paymentUpdated: 'AZ'
-        },
-        {
-            cardNumber: '4567',
-            name: 'Cristiano Ronaldo',
-            city: 'Portugal',
-            phoneNo: '8073340916',
-            careOff1: 'NA',
-            careOff2: 'NA',
-            paymentUpdated: 'AZ',
+    useEffect(() => {
+        fetchUsers();
+    }, []);
+
+    async function fetchUsers() {
+        try {
+            const response = await agentWelcome();
+            setUsers(response.data);
+        } catch (error) {
+            console.error('Error fetching user data:', error);
         }
-    ]);
+    }
 
     return (
         <div className='container-fluid mt-5'>
             <div className='card shadow px-3 py-3 mx-2 my-2 bg-white rounded'>
                 <div className='d-flex flex-column flex-md-row justify-content-md-between align-items-center'>
-                    <div className='createuser mt-2 mt-md-0 me-md-3'>
-                        <button type="button" className="btn btn-warning">Create New User</button>
+                    <div className="createuser mt-2 mt-md-0 me-md-3">
+                        <Link to='/welcome/createuser' type="button" className="btn btn-warning">Create New User</Link>
                     </div>
                     <div className='d-flex justify-content-between align-items-center mt-3 mt-md-0'>
                         <div className='upload me-3'>
@@ -49,7 +43,6 @@ function AgentWelcome() {
                         <button className="btn btn-warning rounded-pill p-2" type="submit">Search</button>
                     </form>
                 </div>
-
             </div>
             <div className="card shadow px-3 py-3 mx-2 my-2 bg-white rounded">
                 <div className="card-body">
@@ -67,19 +60,17 @@ function AgentWelcome() {
                                 </tr>
                             </thead>
                             <tbody>
-
-                                {values.map((value, index) => (
+                                {users.map((user, index) => (
                                     <tr key={index}>
-                                        <td><Link to={`/details/${value.cardNumber}`} className='details'>{value.cardNumber}</Link></td>
-                                        <td><Link to={`/details/${value.cardNumber}`} className='details'>{value.name}</Link></td>
-                                        <td><Link to={`/details/${value.cardNumber}`} className='details'>{value.city}</Link></td>
-                                        <td><Link to={`/details/${value.cardNumber}`} className='details'>{value.phoneNo}</Link></td>
-                                        <td><Link to={`/details/${value.cardNumber}`} className='details'>{value.careOff1}</Link></td>
-                                        <td><Link to={`/details/${value.cardNumber}`} className='details'>{value.careOff2}</Link></td>
-                                        <td><Link to={`/details/${value.cardNumber}`} className='details'>Payment Updated By {value.paymentUpdated}</Link></td>
+                                        <td><Link to={`/welcome/${user.cardNumber}`} className='details'>{user.cardNumber}</Link></td>
+                                        <td><Link to={`/welcome/${user.cardNumber}`} className='details'>{user.name}</Link></td>
+                                        <td><Link to={`/welcome/${user.cardNumber}`} className='details'>{user.city}</Link></td>
+                                        <td><Link to={`/welcome/${user.cardNumber}`} className='details'>{user.phoneNo}</Link></td>
+                                        <td><Link to={`/welcome/${user.cardNumber}`} className='details'>{user.careOff1}</Link></td>
+                                        <td><Link to={`/welcome/${user.cardNumber}`} className='details'>{user.careOff2}</Link></td>
+                                        <td><Link to={`/welcome/${user.cardNumber}`} className='details'>Payment Updated By {user.paymentUpdated}</Link></td>
                                     </tr>
                                 ))}
-
                             </tbody>
                         </table>
                     </div>
