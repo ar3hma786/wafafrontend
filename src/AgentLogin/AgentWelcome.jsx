@@ -1,11 +1,15 @@
+// AgentWelcome.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { createPortal } from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './AgentWelcome.css';
 import { agentWelcome } from '../API/RestAPIService';
+import CreateUser from './CreateUser';
 
 function AgentWelcome() {
     const [users, setUsers] = useState([]);
+    const [createUsers, setCreateUsers] = useState(false);
 
     useEffect(() => {
         fetchUsers();
@@ -20,12 +24,27 @@ function AgentWelcome() {
         }
     }
 
+    console.log('createUsers:', createUsers); // Add console log to check state
+
     return (
         <div className='container-fluid mt-5'>
             <div className='card shadow px-3 py-3 mx-2 my-2 bg-white rounded'>
                 <div className='d-flex flex-column flex-md-row justify-content-md-between align-items-center'>
                     <div className="createuser mt-2 mt-md-0 me-md-3">
-                        <Link to='/welcome/createuser' type="button" className="btn btn-warning">Create New User</Link>
+                        <button
+                            type="button"
+                            className="btn btn-warning"
+                            onClick={() => {
+                                console.log('Button clicked'); // Check if button click event is firing
+                                setCreateUsers(true);
+                            }}
+                        >
+                            Create New User
+                        </button>
+                        {createUsers && createPortal(
+                            <CreateUser onClose={() => setCreateUsers(false)} />, // Check if onClose function is being called
+                            document.body
+                        )}
                     </div>
                     <div className='d-flex justify-content-between align-items-center mt-3 mt-md-0'>
                         <div className='upload me-3'>

@@ -11,4 +11,13 @@ export const executeJWTAuthentication = (cardNumber, password) => {
     }
 };
 
-export const agentWelcome = () => apiClient.get('/api/userslist');
+export const agentWelcome = () => apiClient.get('/list/userslist');
+
+export const createUser = async (formData) => {
+    try {
+        const response = await apiClient.post('/auth/signup', formData);
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to create user: ' + error.message);
+    }
+};
